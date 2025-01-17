@@ -1,0 +1,91 @@
+﻿using CarRentals.Data.Models;
+using CarRentals.Data.Service;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace CarRentals.Controllers
+{
+    public class AdminController : Controller
+    {
+        private readonly IAdminRepository _adminRepository;
+        private readonly PasswordService _passwordService;
+
+        public AdminController(IAdminRepository adminRepository, PasswordService passwordService)
+        {
+            _adminRepository = adminRepository;
+            _passwordService = passwordService;
+        }
+        // GET: AdminsController
+        public ActionResult Index()
+        {
+            if (Request.Cookies.ContainsKey("AuthCookie"))
+            {
+                // The cookie exists, you can retrieve its value
+                if(Request.Cookies["AuthCookie"] == "AdminLoggedIn")
+                {
+                    return View("AdminPage");
+                }
+            }
+            return View();
+        }
+
+        [AdminOnly]
+        public ActionResult AdminPage()
+        {
+            return View();
+        }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Authenticate(Admin admin)
+        {
+            if (ModelState.IsValid)
+            {
+                Admin dbAdmin = _adminRepository.GetByEmail(admin.Email);
+
+                if (admin != null && dbAdmin != null)
+                {
+                    if (_passwordService.VerifyPassword(admin.Password, dbAdmin.Password))
+                    {
+                        // Create a cookie for authentication
+                        var authCookieOptions = new CookieOptions
+                        {
+                            HttpOnly = true,       // Prevent client-side access
+                            Secure = true,         // Ensure cookie is sent over HTTPS (set to false if in development)
+                            Expires = DateTime.UtcNow.AddHours(3) // Set expiration time
+                        };
+
+                        Response.Cookies.Append("AuthCookie", "AdminLoggedIn", authCookieOptions);
+
+                        return RedirectToAction(nameof(Index)); // Redirect to admin dashboard
+                    }
+                    else
+                    {
+                        ViewBag.ErrorMessage = "Invalid username or password.";
+                    }
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "Invalid username or password.";
+                }
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Invalid username or password.";
+            }
+
+            return View("Index");
+        }
+
+
+
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("AuthCookie"); // Remove the authentication cookie
+            return RedirectToAction("Index", "Admin");
+        }
+
+    }
+}
