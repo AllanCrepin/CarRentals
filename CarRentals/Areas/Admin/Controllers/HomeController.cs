@@ -52,36 +52,23 @@ namespace CarRentals.Areas.Admin.Controllers
             {
                 AdminModel dbAdmin = _adminRepository.GetByEmail(admin.Email);
 
-                if (admin != null && dbAdmin != null)
+                if (admin != null && dbAdmin != null && _passwordService.VerifyPassword(admin.Password, dbAdmin.Password))
                 {
-                    if (_passwordService.VerifyPassword(admin.Password, dbAdmin.Password))
+                    // Create a cookie for authentication
+                    var authCookieOptions = new CookieOptions
                     {
-                        // Create a cookie for authentication
-                        var authCookieOptions = new CookieOptions
-                        {
-                            HttpOnly = true,       // Prevent client-side access
-                            Secure = true,         // Ensure cookie is sent over HTTPS (set to false if in development)
-                            Expires = DateTime.UtcNow.AddHours(3) // Set expiration time
-                        };
+                        HttpOnly = true,       // Prevent client-side access
+                        Secure = true,         // Ensure cookie is sent over HTTPS (set to false if in development)
+                        Expires = DateTime.UtcNow.AddHours(3) // Set expiration time
+                    };
 
-                        Response.Cookies.Append("AuthCookie", "AdminLoggedIn", authCookieOptions);
+                    Response.Cookies.Append("AuthCookie", "AdminLoggedIn", authCookieOptions);
 
-                        return RedirectToAction(nameof(Index)); // Redirect to admin dashboard
-                    }
-                    else
-                    {
-                        ViewBag.ErrorMessage = "Invalid username or password.";
-                    }
-                }
-                else
-                {
-                    ViewBag.ErrorMessage = "Invalid username or password.";
+                    return RedirectToAction(nameof(Index)); // Redirect to admin dashboard
                 }
             }
-            else
-            {
-                ViewBag.ErrorMessage = "Invalid username or password.";
-            }
+
+            ViewBag.ErrorMessage = "Invalid username or password.";
 
             return View("Index");
         }

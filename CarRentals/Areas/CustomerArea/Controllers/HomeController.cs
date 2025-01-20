@@ -107,9 +107,7 @@ namespace CarRentals.Areas.CustomerArea.Controllers
                 else
                 {
                     _customerRepository.Add(newCustomer);
-                    //return RedirectToAction(nameof(Index));
                     return RedirectToAction(nameof(SuccessfulRegistration));
-                    //return View(SuccessfulRegistration());
                 }
 
             }
