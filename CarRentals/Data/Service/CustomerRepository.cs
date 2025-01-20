@@ -8,6 +8,12 @@ namespace CarRentals.Data.Service
         public CustomerRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
         }
+
+        public Customer GetByEmail(string email)
+        {
+            return _dbContext.Set<Customer>().FirstOrDefault(a => a.Email == email);
+
+        }
     }
     
 }
