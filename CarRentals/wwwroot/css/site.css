@@ -20,3 +20,15 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.bg-primary {
+    background-color: #ffc107 !important;
+}
+
+.btn-primary {
+    background-color: #ffc107 !important;
+}
+
+.text-primary {
+    color: #ffc107 !important;
+}

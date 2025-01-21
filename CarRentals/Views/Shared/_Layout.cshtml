@@ -9,6 +9,64 @@
     <link rel="stylesheet" href="~/CarRentals.styles.css" asp-append-version="true" />
 </head>
 <body>
+
+
+    <!--
+    <header class="p-3 mb-0 border-bottom bg-white">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+
+                <a class="d-flex align-items-center mb-2 mb-lg-0 mx-2 link-body-emphasis text-decoration-none text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                    <h3 class="fw-bold text-body-emphasis">FRIBERG CAR  <span class="text-primary">RENTALS</span> </h3>
+                </a>
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a class="nav-link px-2 text-dark" asp-area="" asp-controller="Cars" asp-action="Index">Alla bilar</a></li>
+                    <li><a class="nav-link px-2 text-dark" asp-area="" asp-controller="Home" asp-action="Index">Bokning</a></li>
+                    <li><a class="nav-link px-2 text-dark" asp-area="" asp-controller="Home" asp-action="Index">Om oss</a></li>
+                    <li><a class="nav-link px-2 text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                </ul>
+
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                </form>
+                @await Component.InvokeAsync("UserMenu")
+            </div>
+        </div>
+    </header>
+    -->
+    <header class="p-3 mb-0 bg-dark">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+
+                <a class="d-flex align-items-center mb-2 mb-lg-0 mx-2 link-body-emphasis text-decoration-none text-white" asp-area="" asp-controller="Home" asp-action="Index">
+                    <h3 class="fw-bold text-body-emphasis">FRIBERG CAR <span class="text-primary">RENTALS</span> </h3>
+                </a>
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a class="nav-link px-2 text-white" asp-area="" asp-controller="Cars" asp-action="Index">Alla bilar</a></li>
+                    <li><a class="nav-link px-2 text-white" asp-area="" asp-controller="Home" asp-action="Index">Bokning</a></li>
+                    <li><a class="nav-link px-2 text-white" asp-area="" asp-controller="Home" asp-action="Index">Om oss</a></li>
+                    <li><a class="nav-link px-2 text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                </ul>
+
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                </form>
+                @await Component.InvokeAsync("UserMenu")
+            </div>
+        </div>
+    </header>
+
+
+
+
+
+
+
+    <!--
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -33,11 +91,12 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    -->
+    
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
+
 
     <footer class="border-top footer text-muted">
         <div class="container">

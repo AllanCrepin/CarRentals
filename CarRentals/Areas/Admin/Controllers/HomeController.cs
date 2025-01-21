@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 
 using AdminModel = CarRentals.Data.Models.Admin;
+using System.Text.Json;
 
 namespace CarRentals.Areas.Admin.Controllers
 {
@@ -25,14 +26,35 @@ namespace CarRentals.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
+            if (Request.Cookies.TryGetValue("AuthCookie", out var cookieValue))
+            {
+                var userData = JsonSerializer.Deserialize<JsonElement>(cookieValue);
+
+                // Access the properties using JsonElement.GetProperty
+                if (userData.TryGetProperty("Name", out var nameElement) &&
+                    userData.TryGetProperty("Status", out var statusElement))
+                {
+                    var name = nameElement.GetString();
+                    var status = statusElement.GetString();
+
+                    if (status == "AdminLoggedIn")
+                    {
+                        return View("AdminPage");
+                    }
+                }
+            }
+            /*
             if (Request.Cookies.ContainsKey("AuthCookie"))
             {
                 // The cookie exists, you can retrieve its value
-                if (Request.Cookies["AuthCookie"] == "AdminLoggedIn")
+                if (cookieValue.name == "AdminLoggedIn")
                 {
                     return View("AdminPage");
                 }
             }
+            return View();
+            */
+
             return View();
         }
 
@@ -62,7 +84,12 @@ namespace CarRentals.Areas.Admin.Controllers
                         Expires = DateTime.UtcNow.AddHours(3) // Set expiration time
                     };
 
-                    Response.Cookies.Append("AuthCookie", "AdminLoggedIn", authCookieOptions);
+                    // Not at ALL secure, but more security has been specifically forbidden.
+
+                    var userData = new { Name = dbAdmin.Email, Status = "AdminLoggedIn"};
+                    var userDataJson = JsonSerializer.Serialize(userData);
+
+                    Response.Cookies.Append("AuthCookie", userDataJson, authCookieOptions);
 
                     return RedirectToAction(nameof(Index)); // Redirect to admin dashboard
                 }

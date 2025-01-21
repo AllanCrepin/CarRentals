@@ -3,6 +3,7 @@ using CarRentals.Data.Service;
 using CarRentals.Data.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace CarRentals.Areas.CustomerArea.Controllers
 {
@@ -19,12 +20,21 @@ namespace CarRentals.Areas.CustomerArea.Controllers
         // GET: HomeController
         public ActionResult Index()
         {
-            if (Request.Cookies.ContainsKey("AuthCookie"))
+            if (Request.Cookies.TryGetValue("AuthCookie", out var cookieValue))
             {
-                // The cookie exists, you can retrieve its value
-                if (Request.Cookies["AuthCookie"] == "CustomerLoggedIn")
+                var userData = JsonSerializer.Deserialize<JsonElement>(cookieValue);
+
+                // Access the properties using JsonElement.GetProperty
+                if (userData.TryGetProperty("Name", out var nameElement) &&
+                    userData.TryGetProperty("Status", out var statusElement))
                 {
-                    return View("CustomerPage");
+                    var name = nameElement.GetString();
+                    var status = statusElement.GetString();
+
+                    if (status == "CustomerLoggedIn")
+                    {
+                        return View("CustomerPage");
+                    }
                 }
             }
             return View();
@@ -57,7 +67,15 @@ namespace CarRentals.Areas.CustomerArea.Controllers
                         Secure = true,
                         Expires = DateTime.UtcNow.AddHours(3)
                     };
-                    Response.Cookies.Append("AuthCookie", "CustomerLoggedIn", authCookieOptions);
+
+                    // Not at ALL secure, but more security has been specifically forbidden.
+
+                    var userData = new { Name = customer.Name, Status = "CustomerLoggedIn" };
+                    var userDataJson = JsonSerializer.Serialize(userData);
+
+                    Response.Cookies.Append("AuthCookie", userDataJson, authCookieOptions);
+
+
                     return RedirectToAction(nameof(Index));
                     
                 }

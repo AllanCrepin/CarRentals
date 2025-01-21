@@ -16,7 +16,6 @@
     <div class="col-md-4">
         <form asp-action="Authenticate" method="post">
             @Html.AntiForgeryToken()
-            <!-- Login fields -->
             <div class="form-group">
                 <label asp-for="LoginViewModel.Email" class="control-label"></label>
                 <input asp-for="LoginViewModel.Email" class="form-control" />
@@ -39,7 +38,6 @@
     <div class="col-md-4">
         <form asp-action="Register" method="post">
             @Html.AntiForgeryToken()
-            <!-- Registration fields -->
             <div class="form-group">
                 <label asp-for="RegistrationViewModel.Name" class="control-label"></label>
                 <input asp-for="RegistrationViewModel.Name" class="form-control" />
