@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<CarRentals.Data.Models.Car>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -21,4 +23,146 @@
     </div>
 </div>
 
+</div>
+<div class="container-fluid d-flex justify-content-center mt-5">
+    <h1>Våra populäraste bilar</h1>
+</div>
+
+<!--
+<div class="container d-flex justify-content-center">
+    <div class="row mt-5">
+        <div class="col-sm-4">
+            <div class="card">
+                <img src="https://bilhornan.se/wp-content/uploads/sites/71/2024/10/bil_230306_gr-yaris_5874478_6692594_8104877_6596644.png" class="card-img-top border-bottom img-fluid ">
+                <div class="card-body pt-0 px-0 mt-3">
+                    <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                        <h6 class="text-muted">Toyota Yaris 2006</h6>
+                        <h6>1045:-/dag</h6>
+                    </div>
+                    <hr />
+                    <div class="d-flex flex-row justify-content-between mid px-3">
+                        <div class="d-flex flex-column"><small class="text-muted mb-1">Säten</small><div class="d-flex flex-row"><img src="/images/person-svgrepo-com.svg" alt="Description of the SVG" width="30" height="30"><div class="d-flex flex-column ml-1"><small class="ghj">5</small></div></div></div>
+                        <div class="d-flex flex-column"><small class="text-muted mb-2">Automatic</small><div class="d-flex flex-row"><img src="~/images/transmission-square-svgrepo-com.svg" width="30" height="30"></div></div>
+                        <div class="d-flex flex-column"><small class="text-muted mb-2">Petrol</small><div class="d-flex flex-row"><img src="~/images/gas-station-petrol-station-svgrepo-com.svg" width="30" height="30"></div></div>
+                        <div class="d-flex flex-column"><small class="text-muted mb-2">Miljöbetyg</small><div class="d-flex flex-row"><img src="~/images/green-car-svgrepo-com.svg" width="30" height="30"><h6 class="ml-1">1/5</h6></div></div>
+                    </div>
+                    <hr />
+                    <div class="text-center mx-3"><button type="button" class="btn btn-dark btn-block w-100 border-0"><small>BOKA NU</small></button></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <img src="https://bilhornan.se/wp-content/uploads/sites/71/2024/10/bil_230306_gr-yaris_5874478_6692594_8104877_6596644.png" class="card-img-top border-bottom img-fluid ">
+                <div class="card-body pt-0 px-0 mt-3">
+                    <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                        <h6 class="text-muted">Toyota Yaris 2006</h6>
+                        <h6>1045:-/dag</h6>
+                    </div>
+                    <hr />
+                    <div class="d-flex flex-row justify-content-between mid px-3">
+                        <div class="d-flex flex-column"><small class="text-muted mb-1">Säten</small><div class="d-flex flex-row"><img src="/images/person-svgrepo-com.svg" alt="Description of the SVG" width="30" height="30"><div class="d-flex flex-column ml-1"><small class="ghj">5</small></div></div></div>
+                        <div class="d-flex flex-column"><small class="text-muted mb-2">Manual</small><div class="d-flex flex-row"><img src="~/images/transmission-square-svgrepo-com.svg" width="30" height="30"></div></div>
+                        <div class="d-flex flex-column"><small class="text-muted mb-2">Electric</small><div class="d-flex flex-row"><img src="~/images/lightning-bolt-weather-storm-energy-electricity-svgrepo-com.svg" width="30" height="30"></div></div>
+                        <div class="d-flex flex-column"><small class="text-muted mb-2">Miljöbetyg</small><div class="d-flex flex-row"><img src="~/images/green-car-svgrepo-com.svg" width="30" height="30"><h6 class="ml-1">1/5</h6></div></div>
+                    </div>
+                    <hr />
+                    <div class="text-center mx-3"><button type="button" class="btn btn-dark btn-block w-100 border-0"><small>BOKA NU</small></button></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <img src="https://bilhornan.se/wp-content/uploads/sites/71/2024/10/bil_230306_gr-yaris_5874478_6692594_8104877_6596644.png" class="card-img-top border-bottom img-fluid ">
+                <div class="card-body pt-0 px-0 mt-3">
+                    <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                        <h6 class="text-muted">Toyota Yaris 2006</h6>
+                        <h6>1045:-/dag</h6>
+                    </div>
+                    <hr />
+                    <div class="d-flex flex-row justify-content-between mid px-3">
+                        <div class="d-flex flex-column"><small class="text-muted mb-1">Säten</small><div class="d-flex flex-row"><img src="/images/person-svgrepo-com.svg" alt="Description of the SVG" width="30" height="30"><div class="d-flex flex-column ml-1"><small class="ghj">5</small></div></div></div>
+                        <div class="d-flex flex-column"><small class="text-muted mb-2">Automatic</small><div class="d-flex flex-row"><img src="~/images/transmission-square-svgrepo-com.svg" width="30" height="30"></div></div>
+                        <div class="d-flex flex-column"><small class="text-muted mb-2">Hybrid</small><div class="d-flex flex-row"><img src="~/images/gas-station-petrol-station-svgrepo-com.svg" width="30" height="30"></div></div>
+                        <div class="d-flex flex-column"><small class="text-muted mb-2">Miljöbetyg</small><div class="d-flex flex-row"><img src="~/images/green-car-svgrepo-com.svg" width="30" height="30"><h6 class="ml-1">1/5</h6></div></div>
+                    </div>
+                    <hr />
+                    <div class="text-center mx-3"><button type="button" class="btn btn-dark btn-block w-100 border-0"><small>BOKA NU</small></button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+
+
+<div class="container d-flex justify-content-center">
+    <div class="row mt-5">
+        @foreach (var car in Model)
+        {
+            <div class="col-sm-4">
+                <div class="card">
+                    <img src="@car.ImageUrls[0]" class="card-img-top border-bottom img-fluid ratioimg">
+
+                    <div class="card-body pt-0 px-0 mt-3">
+                        <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                            <h6 class="text-muted">@(car.Model + " " + car.Year)</h6>
+                            <h6>@car.PricePerDay:-/dag</h6>
+                        </div>
+                        <hr />
+                        <div class="d-flex flex-row justify-content-between mid px-3">
+                            <div class="d-flex flex-column">
+                                <small class="text-muted mb-1">Säten</small>
+                                <div class="d-flex flex-row">
+                                    <img src="/images/person-svgrepo-com.svg" alt="Description of the SVG" width="30" height="30">
+                                    <div class="d-flex flex-column ml-1">
+                                        <small class="ghj">@car.NumberSeats</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column">
+                                @{string transmissionType = "";}
+                                @if(car.IsAutomatic){ transmissionType = "Automat"; }
+                                @if (!car.IsAutomatic) { transmissionType = "Manual"; }
+                                <small class="text-muted mb-2">@transmissionType</small>
+                                <div class="d-flex flex-row">
+                                    <img src="~/images/transmission-square-svgrepo-com.svg" width="30" height="30">
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column">
+                                @if (car.IsElectric)
+                                {
+                                    <small class="text-muted mb-2">El</small>
+                                    <div class="d-flex flex-row">
+                                        <img src="~/images/lightning-bolt-weather-storm-energy-electricity-svgrepo-com.svg" width="30" height="30">
+                                    </div>
+                                }
+                                @if (!car.IsElectric)
+                                {
+                                    <small class="text-muted mb-2">Petrol</small>
+                                    <div class="d-flex flex-row">
+                                        <img src="~/images/gas-station-petrol-station-svgrepo-com.svg" width="30" height="30">
+                                    </div>
+                                }
+                                
+                            </div>
+                            <div class="d-flex flex-column">
+                                <small class="text-muted mb-2">Miljöbetyg</small>
+                                <div class="d-flex flex-row">
+                                    <img src="~/images/green-car-svgrepo-com.svg" width="30" height="30">
+                                    <h6 class="ml-1">@car.EnvironmentalRating/5</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="text-center mx-3">
+                            <button type="button" class="btn btn-dark btn-block w-100 border-0">
+                                <small>BOKA NU</small>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>

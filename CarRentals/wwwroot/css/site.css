@@ -32,3 +32,14 @@ body {
 .text-primary {
     color: #ffc107 !important;
 }
+
+hr {
+
+    height: .5px !important;
+}
+
+
+.ratioimg {
+    min-height: 310px;
+    object-fit: cover;
+}

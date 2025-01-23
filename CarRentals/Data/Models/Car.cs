@@ -12,5 +12,10 @@ namespace CarRentals.Data.Models
         public decimal PricePerDay { get; set; }
         public List<string> ImageUrls { get; set; } // Store links to images
         public bool IsAvailable { get; set; }
+        public int EnvironmentalRating { get; set; }
+        public int NumberSeats { get; set; }
+        public bool IsElectric {  get; set; }
+        public bool IsAutomatic { get; set; }
+        
     }
 }
