@@ -67,14 +67,29 @@ namespace CarRentals.Areas.CustomerArea.Controllers
                         Secure = true,
                         Expires = DateTime.UtcNow.AddHours(3)
                     };
+                    
 
                     // Not at ALL secure, but more security has been specifically forbidden.
 
-                    var userData = new { Name = customer.Name, Status = "CustomerLoggedIn" };
+                    var userData = new { Name = customer.Name, Status = "CustomerLoggedIn", Id=customer.Id };
                     var userDataJson = JsonSerializer.Serialize(userData);
 
                     Response.Cookies.Append("AuthCookie", userDataJson, authCookieOptions);
 
+                    if (IsCarBookingOnHold())
+                    {
+                        var carIdCookie = Request.Cookies["CarOnHold"];
+                        if (carIdCookie != null)
+                        {
+                            int carId = int.Parse(carIdCookie);
+
+                            // Remove the cookie after retrieving its value
+                            Response.Cookies.Delete("CarOnHold");
+
+                            return RedirectToAction("Index", "CarBooking", new { area = "CustomerArea", carId = carId });
+                        }
+
+                    }
 
                     return RedirectToAction(nameof(Index));
                     
@@ -89,6 +104,16 @@ namespace CarRentals.Areas.CustomerArea.Controllers
                 RegistrationViewModel = new CustomerRegistrationViewModel() // Keep the registration form intact
             };
             return View("Index", viewModel);
+        }
+
+        private bool IsCarBookingOnHold()
+        {
+            var carIdCookie = Request.Cookies["CarOnHold"];
+            if (carIdCookie != null)
+            {
+                return true;
+            }
+            return false;
         }
 
         [CustomerOnly]
@@ -124,7 +149,37 @@ namespace CarRentals.Areas.CustomerArea.Controllers
                 }
                 else
                 {
-                    _customerRepository.Add(newCustomer);
+                    var finalCustomer = _customerRepository.Add(newCustomer);
+
+                    var authCookieOptions = new CookieOptions
+                    {
+                        HttpOnly = true,
+                        Secure = true,
+                        Expires = DateTime.UtcNow.AddHours(3)
+                    };
+
+                    // Not at ALL secure, but more security has been specifically forbidden.
+
+                    var userData = new { Name = newCustomer.Name, Status = "CustomerLoggedIn", Id = finalCustomer.Id };
+                    var userDataJson = JsonSerializer.Serialize(userData);
+
+                    Response.Cookies.Append("AuthCookie", userDataJson, authCookieOptions);
+
+                    if (IsCarBookingOnHold())
+                    {
+                        var carIdCookie = Request.Cookies["CarOnHold"];
+                        if (carIdCookie != null)
+                        {
+                            int carId = int.Parse(carIdCookie);
+
+                            // Remove the cookie after retrieving its value
+                            Response.Cookies.Delete("CarOnHold");
+
+                            return RedirectToAction("Index", "CarBooking", new { area = "CustomerArea", carId = carId });
+                        }
+
+                    }
+
                     return RedirectToAction(nameof(SuccessfulRegistration));
                 }
 

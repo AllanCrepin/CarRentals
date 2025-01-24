@@ -34,6 +34,7 @@ namespace CarRentals
             builder.Services.AddTransient<IAdminRepository, AdminRepository>();
             builder.Services.AddTransient<IBookingRepository, BookingRepository>();
             builder.Services.AddTransient<BookingService>();
+            builder.Services.AddTransient<CarService>();
 
 
             var app = builder.Build();

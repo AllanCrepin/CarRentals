@@ -1,0 +1,114 @@
+﻿@model CarRentals.Data.Models.Car
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<div>
+    <h4>Car</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PricePerDay)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PricePerDay)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ImageUrls)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ImageUrls)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsAvailable)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsAvailable)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EnvironmentalRating)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EnvironmentalRating)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NumberSeats)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumberSeats)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsElectric)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsElectric)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsAutomatic)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsAutomatic)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+
+
+<div class="container mt-5">
+    <form asp-action="CreateBooking">
+        <input type="hidden" name="carId" value="@Model.Id">
+        <div class="mb-3">
+            <label for="booking-dates" class="form-label">Select Booking Dates</label>
+            <input id="booking-dates" name="BookingDates" type="text" class="form-control" placeholder="Select booking dates">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Book Now</button>
+    </form>
+</div>
+
+
+
+@section Scripts {
+    <script>
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+                const carId = @Model.Id; // Replace with the actual car ID dynamically
+
+                // Using Tag Helpers to generate the URL
+                const url = '@Url.Action("GetUnavailableDates", "CarBooking", new { carId = "__carId__" })'.replace("__carId__", carId);
+
+                fetch(url)
+                    .then(response => response.json())
+                    .then(disabledDates => {
+                        flatpickr("#booking-dates", {
+                            mode: "range",
+                            dateFormat: "Y-m-d",
+                            disable: disabledDates.map(date => new Date(date)),
+                        });
+                    });
+            });
+
+
+    </script>
+}

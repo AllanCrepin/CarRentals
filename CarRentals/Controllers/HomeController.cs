@@ -11,45 +11,23 @@ namespace CarRentals.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ICarRepository _carRepository;
         private readonly IBookingRepository _bookingRepository;
+        private readonly CarService _carService;
 
-        public HomeController(ILogger<HomeController> logger, ICarRepository carRepository, IBookingRepository bookingRepository)
+        public HomeController(ILogger<HomeController> logger, ICarRepository carRepository, IBookingRepository bookingRepository, CarService carService)
         {
             _logger = logger;
             _carRepository = carRepository;
             _bookingRepository = bookingRepository;
+            _carService = carService;
 
         }
 
         public IActionResult Index()
         {
-            var topBookedCars = _carRepository.GetAll()
-            .Select(car => new
-            {
-                Car = car,
-                BookingCount = _bookingRepository.GetAll().Count(b => b.CarId == car.Id && !b.IsCancelled)
-            })
-            .OrderByDescending(c => c.BookingCount)
-            .Take(3)
-            .Select(c => c.Car)
-            .ToList();
-
-            // Fallback logic if less than 3 cars are found
-            if (topBookedCars.Count < 3)
-            {
-                var fallbackCars = _carRepository.GetAll()
-                    .Take(3)
-                    .ToList();
-
-                // Merge the two lists, ensuring no duplicates
-                topBookedCars = topBookedCars
-                    .Concat(fallbackCars)
-                    .Distinct()
-                    .Take(3)
-                    .ToList();
-            }
+            var topBookedCars = _carService.GetMostBookedCars(3);
 
             return View(topBookedCars);
-            
+
         }
 
         public IActionResult Privacy()

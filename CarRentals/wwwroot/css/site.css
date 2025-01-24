@@ -43,3 +43,31 @@ hr {
     min-height: 310px;
     object-fit: cover;
 }
+
+.flatpickr-calendar {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Matches Bootstrap font */
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.flatpickr-day {
+    border-radius: 0.25rem;
+}
+
+    .flatpickr-day:hover {
+        background-color: #e9ecef; /* Matches Bootstrap hover color */
+    }
+
+    .flatpickr-day.selected {
+        background-color: #007bff; /* Matches Bootstrap primary color */
+        color: #fff;
+    }
+
+    .flatpickr-day.today {
+        border: 1px solid #007bff;
+    }
+
+.flatpickr-calendar {
+    z-index: 1050; /* Matches Bootstrap's modal z-index */
+}

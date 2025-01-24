@@ -8,11 +8,13 @@ namespace CarRentals.Data.Service
     {
         private readonly ICarRepository _carRepository;
         private readonly ICustomerRepository _customerRepository;
+        private readonly IBookingRepository _bookingRepository;
 
-        public BookingService(ICarRepository carRepository, ICustomerRepository customerRepository)
+        public BookingService(ICarRepository carRepository, ICustomerRepository customerRepository, IBookingRepository bookingRepository)
         {
             _carRepository = carRepository;
             _customerRepository = customerRepository;
+            _bookingRepository = bookingRepository;
         }
 
         public bool CarExists(int carId)
@@ -91,6 +93,78 @@ namespace CarRentals.Data.Service
                 EndDate = model.EndDate,
                 IsCancelled = model.IsCancelled,
                 TotalCost = totalPrice // Set the calculated total price
+            };
+
+            // Add the booking to the context and save
+            /*
+            _context.Add(booking);
+            await _context.SaveChangesAsync();
+            */
+
+            return booking;
+        }
+        public bool IsCarAvailable(int carId, DateTime startDate, DateTime endDate)
+        {
+            // Check if there are any existing bookings for this car within the selected date range
+            var existingBookings = _bookingRepository.GetBookingsByCarIdAndDateRange(carId, startDate, endDate);
+
+            return !existingBookings.Any(); // If no overlapping bookings are found, the car is available
+        }
+
+        public Booking CreateBooking(string bookingDates, int userId, int carId)
+        {
+            // Split the booking dates string into start and end dates
+            var dates = bookingDates.Split(" to ");
+            if (dates.Length != 2)
+            {
+                throw new Exception("Invalid booking dates format.");
+            }
+
+            var startDate = DateTime.Parse(dates[0]);
+            var endDate = DateTime.Parse(dates[1]);
+
+            // Validate the booking dates
+            if (!IsDateValid(startDate, endDate))
+            {
+                throw new Exception("Invalid dates: Ensure the start date is before the end date and the duration is at least 2 hours.");
+            }
+
+            // Check if car exists
+            var car = _carRepository.Get(carId);
+            if (car == null)
+            {
+                throw new Exception("Car not found");
+            }
+
+            // Check if customer exists
+            var customer = _customerRepository.Get(userId);
+            if (customer == null)
+            {
+                throw new Exception("Customer not found");
+            }
+
+            // Check if the car is available for the selected date range
+            if (!IsCarAvailable(carId, startDate, endDate))
+            {
+                throw new Exception("The car is already booked for the selected dates.");
+            }
+
+            // Calculate the number of rental days
+            var rentalDurationInHours = (endDate - startDate).TotalHours;
+            var rentalDurationInDays = (int)Math.Ceiling(rentalDurationInHours / 24);
+
+            // Calculate the total price based on PricePerDay and rental duration (rounded up)
+            var totalPrice = car.PricePerDay * rentalDurationInDays;
+
+            // Create a new booking
+            var booking = new Booking
+            {
+                CustomerId = userId,
+                CarId = carId,
+                StartDate = startDate,
+                EndDate = endDate,
+                TotalCost = totalPrice,
+                IsCancelled = false // You can adjust this based on your logic
             };
 
             // Add the booking to the context and save
