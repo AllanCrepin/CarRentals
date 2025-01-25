@@ -44,6 +44,46 @@ hr {
     object-fit: cover;
 }
 
+
+
+/*
+.carousel-inner {
+    min-height: 310px;
+    object-fit: cover;
+}
+
+.carousel-inner img {
+    min-height: 310px;
+    object-fit: cover;
+}
+*/
+/*
+.carousel{
+    width:310px;
+    height:310px;
+}
+.carousel-item {
+    width:310px;
+    height:310px;    
+}
+*/
+/*
+.carousel-item img {
+    width:310px;
+    height:310px;
+}
+*/
+
+.icon {
+    width:30px;
+    height:30px;
+}
+
+.carousel {
+    width: 310px;
+    height: 310px;
+}
+
 .flatpickr-calendar {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Matches Bootstrap font */
     border: 1px solid #ddd;
