@@ -15,5 +15,23 @@ namespace CarRentals.Data.Service
                             ((b.StartDate < endDate && b.EndDate > startDate))) // Check for overlapping dates
                 .ToList();
         }
+
+        public IEnumerable<Booking> EagerGetAll()
+        {
+            return _dbContext.Bookings
+                           .Include(b => b.Customer)  // Eager load Customer
+                           .Include(b => b.Car)      // Eager load Car
+                           .ToList();  // Immediately execute the query
+        }
+
+        // Eager loading method with filtering by CustomerId
+        public IEnumerable<Booking> GetAllByCustomerId(int customerId)
+        {
+            return _dbContext.Bookings
+                           .Include(b => b.Customer)  // Eager load Customer
+                           .Include(b => b.Car)       // Eager load Car
+                           .Where(b => b.CustomerId == customerId)  // Filter by CustomerId
+                           .ToList();  // Execute the query and return a list
+        }
     }
 }

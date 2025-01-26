@@ -6,32 +6,30 @@
 
 
 <div class="container-fluid bg-primary mt-0 pt-0">
-
-<div class="container col-xxl-8 px-4 py-5">
-    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-        <div class="col-10 col-sm-8 col-lg-6">
-            <img src="~/images/carrentals-logo-transparent.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
-        </div>
-        <div class="col-lg-6">
-            <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Hyra bil i Hudiksvall</h1>
-            <p class="lead">Sugen på äventyr? Planerar en bilsemester? Hyr en av våra exklusiva bilar, från klassiska, dyrbara Fords till moderna Teslas. We've got you covered.' </p>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                <a asp-area="" asp-controller="Cars" asp-action="Index" class="btn btn-dark btn-lg px-4 me-md-2">
-                    Våra bilar
-                </a>
-                <button type="button" class="btn btn-outline-dark btn-lg px-4">Välj datum</button>
-                    
-                    
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row-reverse align-items-center justify-content-center g-5 py-5">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+                <img src="~/images/carrentals-logo-transparent.png" class="d-block mx-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+            </div>
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6 text-center text-lg-start">
+                <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Hyra bil i Hudiksvall</h1>
+                <p class="lead">Sugen på äventyr? Planerar en bilsemester? Hyr en av våra exklusiva bilar, från klassiska, dyrbara Fords till moderna Teslas. We've got you covered.' </p>
+                <div class="d-grid gap-2 d-lg-flex justify-content-lg-start">
+                    <a asp-area="" asp-controller="Cars" asp-action="Index" class="btn btn-dark btn-lg px-4 me-md-2">
+                        Våra bilar
+                    </a>
+                    <button type="button" class="btn btn-outline-dark btn-lg px-4">Välj datum</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-</div>
+
+
 <div class="container-fluid d-flex justify-content-center mt-5">
     <h1>Våra populäraste bilar</h1>
 </div>
-
 
 
 <div class="container">
@@ -41,8 +39,8 @@
             <!-- A new row for every chunk -->
             @foreach (var car in chunk)
             {
-                <div class="col-md-4 mb-4">
-                    <!-- Each card takes 4 columns in a 12-column grid -->
+                <div class="col-12 col-lg-4 mb-4">
+                    <!-- Full width on small screens, 4 columns on medium and larger -->
                     <div class="card h-100">
                         <img src="@car.ImageUrls[0]" class="card-img-top border-bottom img-fluid ratioimg">
 

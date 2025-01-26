@@ -4,153 +4,11 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<div>
-    <h4>Car</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Model)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Model)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Year)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Year)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PricePerDay)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PricePerDay)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageUrls)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImageUrls)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsAvailable)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsAvailable)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EnvironmentalRating)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EnvironmentalRating)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumberSeats)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NumberSeats)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsElectric)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsElectric)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsAutomatic)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsAutomatic)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-<!---
-<div class="container pt-5">
+<div class="container pt-5 col-lg-10 col-10">
     <div class="row">
         <div class="col-12">
-            <h1>Responsive car dealership details cards</h1>
-            <hr>
-        </div>
-        <div class="col-12">
-            <article class="card car-details label-info sponsored">
-                <div class="card-body">
-                    <div class="d-flex flex-md-row align-items-md-start align-items-center flex-column">
-                        <div class="thumbnail position-relative mb-md-0 mb-3">
-                            <img src="@Model.ImageUrls[0]" class="card-img-top border img-fluid ratioimg" />
-                        </div>
-                        <div class="w-100">
-                            <div class="d-flex flex-md-row flex-column">
-                                <h3 class="mr-3">@(Model.Model + " " + Model.Year)</h3>
-                                <div class="ml-auto text-right">
-                                    <h3>@Model.PricePerDay:-/dag</h3>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-md-4 col-12">
-                                        <ul>
-                                            <li><i class="fas fa-tachometer-alt"></i> <strong>Millage:</strong> 255,000 KM </li>
-                                            <li><i class="fas fa-users"></i> <strong>Prev Owners:</strong> 3</li>
-                                            <li><i class="fas fa-calendar"></i> <strong>First Registration:</strong> 2018</li>
-                                            <li><i class="fas fa-info-circle"></i> <strong>Displacement:</strong> 1,390cc</li>
-                                            <li><i class="fas fa-info-circle"></i> <strong>Perfomance:</strong> 118 kW (160 hp)</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-8 col-12">
-                                        <ul>
-                                            <li><i class="fas fa-info-circle"></i> <strong>Fuel Type:</strong> Petrol </li>
-                                            <li><i class="fas fa-info-circle"></i> <strong>Consumption(combined):</strong> approx. 6.4 l/100km</li>
-                                            <li><i class="fas fa-info-circle"></i> <strong>CO₂ Emissions:</strong> approx. 150 g/km (combined)</li>
-                                            <li data-toggle="tooltip" title="The emission class determines the tax bracket of a vehicle. You can find it under number 14 in the registration certificate part 1 (vehicle registration)."><i class="fas fa-info-circle"></i> <strong>Emission Class:</strong> 1,390cc</li>
-                                            <li><i class="fas fa-info-circle"></i> <strong>Perfomance:</strong> 118 kW (160 hp)</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="d-flex flex-md-row flex-column align-items-center justify-content-end">
-                                            <button class="btn btn-success w-100 mb-md-0 mb-3 mr-md-3 mr-0"><i class="fas fa-phone"></i> Contact Seller</button>
-                                            <button class="btn btn-default w-100 mb-md-0 mb-3 mr-md-3 mr-0"><i class="fas fa-parking"></i> Park</button>
-                                            <button class="btn btn-default w-100"><i class="fas fa-comment"></i> Comments(18)</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </div>
-    </div>
-</div>
--->
-
-<!--
-
-
--->
-
-<div class="container pt-5">
-    <div class="row">
-        <div class="col-12">
-            <h1>Responsive car dealership details cards</h1>
+            <h1>Välj datum</h1>
             <hr>
         </div>
         <div class="col-12">
@@ -164,7 +22,7 @@
                                     @for (int i = 0; i < Model.ImageUrls.Count; i++)
                                     {
                                         <div class="carousel-item @(i == 0 ? "active" : "")">
-                                            <img src="@Model.ImageUrls[i]" class="img-fluid ratioimg" alt="Car image @(i + 1)">
+                                            <img src="@Model.ImageUrls[i]" class="img-fluid" alt="Car image @(i + 1)">
                                         </div>
                                     }
                                 </div>
@@ -180,11 +38,10 @@
                         </div>
                         <!-- Details Section -->
                         <div class="col-lg-8 col-12">
-                            <div class="d-flex flex-lg-row flex-column">
-                                <h3 class="mr-3">@($"{Model.Model} {Model.Year}")</h3>
-                                <div class="ml-auto text-right">
-                                    <h3>@Model.PricePerDay:-/dag</h3>
-                                </div>
+                            <div class="d-flex justify-content-between">
+                                <h3>@($"{Model.Model} {Model.Year}")</h3>
+                                <h3>@Model.PricePerDay:-/dag</h3>
+                                
                             </div>
                             <hr>
                             <div class="container-fluid">
@@ -192,18 +49,19 @@
                                     <!-- Left Column -->
                                     <div class="col-lg-6 col-12">
                                         <ul class="list-unstyled">
-                                            <li class="d-flex align-items-center gap-2 mb-2">
+                                            <li class="d-flex align-items-center gap-2 mb-3">
                                                 <img src="/images/person-svgrepo-com.svg" alt="Seats" class="icon">
                                                 <strong>Seats:</strong> @Model.NumberSeats
                                             </li>
                                             @{
                                                 string transmissionType = Model.IsAutomatic ? "Automat" : "Manual";
                                             }
-                                            <li class="d-flex align-items-center gap-2 mb-2">
+                                            <li class="d-flex align-items-center gap-2 mb-3">
                                                 <img src="/images/transmission-square-svgrepo-com.svg" alt="Transmission" class="icon">
                                                 <strong>Transmission:</strong> @transmissionType
                                             </li>
-                                            <li class="mb-2">
+                                            <li class="d-flex align-items-center gap-2 mb-2">
+                                                <img src="/images/calendar-days-svgrepo-com.svg" alt="Calendar" class="icon">
                                                 <strong>År:</strong> @Model.Year
                                             </li>
                                         </ul>
@@ -211,25 +69,26 @@
                                     <!-- Right Column -->
                                     <div class="col-lg-6 col-12">
                                         <ul class="list-unstyled">
-                                            <li class="d-flex align-items-center gap-2 mb-2">
+                                            <li class="d-flex align-items-center gap-2 mb-3">
                                                 <img src="/images/green-car-svgrepo-com.svg" alt="Environment" class="icon">
                                                 <strong>Miljöbetyg:</strong> @Model.EnvironmentalRating
                                             </li>
                                             @if (Model.IsElectric)
                                             {
-                                                <li class="d-flex align-items-center gap-2 mb-2">
+                                                <li class="d-flex align-items-center gap-2 mb-3">
                                                     <img src="/images/lightning-bolt-weather-storm-energy-electricity-svgrepo-com.svg" alt="Electric" class="icon">
                                                     <strong>Typ:</strong> El
                                                 </li>
                                             }
                                             else
                                             {
-                                                <li class="d-flex align-items-center gap-2 mb-2">
+                                                <li class="d-flex align-items-center gap-2 mb-3">
                                                     <img src="/images/gas-station-petrol-station-svgrepo-com.svg" alt="Petrol" class="icon">
                                                     <strong>Typ:</strong> Petrol
                                                 </li>
                                             }
-                                            <li class="mb-2">
+                                            <li class="d-flex align-items-center gap-2 mb-2">
+                                                <img src="/images/dollar-circle-svgrepo-com.svg" alt="Dollar icon" class="icon">
                                                 <strong>Pris per dag:</strong> @Model.PricePerDay
                                             </li>
                                         </ul>
@@ -249,6 +108,16 @@
                 </div>
             </article>
         </div>
+    </div>
+    <div class="container mt-5 col-6">
+        <form asp-action="CreateBooking">
+            <input type="hidden" name="carId" value="@Model.Id">
+            <div class="mb-3">
+                <label for="booking-dates" class="form-label">Select Booking Dates</label>
+                <input id="booking-dates" name="BookingDates" type="text" class="form-control" placeholder="Select booking dates">
+            </div>
+            <button type="submit" class="btn btn-primary">Boka nu</button>
+        </form>
     </div>
 </div>
 
@@ -298,17 +167,7 @@
 
 
 
-<div class="container mt-5">
-    <form asp-action="CreateBooking">
-        <input type="hidden" name="carId" value="@Model.Id">
-        <div class="mb-3">
-            <label for="booking-dates" class="form-label">Select Booking Dates</label>
-            <input id="booking-dates" name="BookingDates" type="text" class="form-control" placeholder="Select booking dates">
-        </div>
-        
-        <button type="submit" class="btn btn-primary">Book Now</button>
-    </form>
-</div>
+
 
 
 

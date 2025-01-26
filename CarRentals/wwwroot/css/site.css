@@ -40,19 +40,20 @@ hr {
 
 
 .ratioimg {
-    height:310px;
+    height: 60%; /* 40% of the viewport width */
+    /*height: 310px;*/
     object-fit: cover;
-    object-position: center; /* Ensures the center of the image is visible */
+    object-position: center;
 }
 .carousel {
-    height: 210px;
+    height: 250px;
     width:100%;
     object-fit: cover; /* Ensures the image fills the space proportionally */
     object-position: center; /* Centers the image content */
 }
 
 .carousel img{
-    height:210px;
+    height:250px;
     width:100%;
     object-fit:cover;
     object-position:center;
