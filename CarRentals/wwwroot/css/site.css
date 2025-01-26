@@ -40,23 +40,32 @@ hr {
 
 
 .ratioimg {
-    min-height: 310px;
+    height:310px;
     object-fit: cover;
+    object-position: center; /* Ensures the center of the image is visible */
+}
+.carousel {
+    height: 210px;
+    width:100%;
+    object-fit: cover; /* Ensures the image fills the space proportionally */
+    object-position: center; /* Centers the image content */
 }
 
-
+.carousel img{
+    height:210px;
+    width:100%;
+    object-fit:cover;
+    object-position:center;
+}
 
 /*
 .carousel-inner {
     min-height: 310px;
     object-fit: cover;
 }
-
-.carousel-inner img {
-    min-height: 310px;
-    object-fit: cover;
-}
 */
+
+
 /*
 .carousel{
     width:310px;
@@ -77,11 +86,6 @@ hr {
 .icon {
     width:30px;
     height:30px;
-}
-
-.carousel {
-    width: 310px;
-    height: 310px;
 }
 
 .flatpickr-calendar {

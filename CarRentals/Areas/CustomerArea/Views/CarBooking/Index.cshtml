@@ -156,10 +156,10 @@
         <div class="col-12">
             <article class="card car-details label-info sponsored">
                 <div class="card-body">
-                    <div class="d-flex flex-lg-row align-items-lg-start align-items-center flex-column">
+                    <div class="row">
                         <!-- Carousel Section -->
-                        <div class="thumbnail position-relative mb-lg-0 mb-3 w-100">
-                            <div id="carouselExample" class="carousel slide">
+                        <div class="col-lg-4 col-12 d-flex align-items-center justify-content-center mb-lg-0 mb-3">
+                            <div id="carouselExample" class="carousel slide w-100">
                                 <div class="carousel-inner">
                                     @for (int i = 0; i < Model.ImageUrls.Count; i++)
                                     {
@@ -179,7 +179,7 @@
                             </div>
                         </div>
                         <!-- Details Section -->
-                        <div class="w-100">
+                        <div class="col-lg-8 col-12">
                             <div class="d-flex flex-lg-row flex-column">
                                 <h3 class="mr-3">@($"{Model.Model} {Model.Year}")</h3>
                                 <div class="ml-auto text-right">
@@ -251,6 +251,7 @@
         </div>
     </div>
 </div>
+
 
 
 
