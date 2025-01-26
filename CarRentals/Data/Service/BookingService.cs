@@ -29,6 +29,12 @@ namespace CarRentals.Data.Service
 
         public bool IsDateValid(DateTime startDate, DateTime endDate)
         {
+            // Check if the start date is in the past
+            if (startDate.Date < DateTime.Now.Date) // Compare only the date part
+            {
+                return false; // Invalid if start date is before today
+            }
+
             // Check if the start date is after the end date
             if (startDate >= endDate)
             {

@@ -59,27 +59,6 @@ namespace CarRentals.Areas.CustomerArea.Controllers
         [HttpPost]
         public IActionResult CreateBooking(int carId, string bookingDates)
         {
-            /*
-            var dates = bookingDates.Split(" to "); // Split the range into start and end dates
-            var startDate = DateTime.Parse(dates[0]);
-            var endDate = DateTime.Parse(dates[1]);
-
-            // Save the booking to the database
-            var booking = new Booking
-            {
-                CarId = carId,
-                StartDate = startDate,
-                EndDate = endDate,
-            };
-
-            _context.Bookings.Add(booking);
-            _context.SaveChanges();
-
-            return RedirectToAction("Success");
-            */
-
-
-
             // Retrieve customerId (this should come from the session or logged-in user context)
             var customerId = 1;  // Placeholder for customer ID, replace this with actual logic
 
@@ -89,33 +68,27 @@ namespace CarRentals.Areas.CustomerArea.Controllers
 
                 // Access the properties using JsonElement.GetProperty
                 if (userData.TryGetProperty("Name", out var nameElement) &&
-                    userData.TryGetProperty("Status", out var statusElement)
-                    && userData.TryGetProperty("Id", out var idElement))
+                    userData.TryGetProperty("Status", out var statusElement) &&
+                    userData.TryGetProperty("Id", out var idElement))
                 {
-                    var name = nameElement.GetString();
-                    var status = statusElement.GetString();
-                    var id = idElement.GetInt32();
-
-                    //Int32.TryParse(id, out int realid);
-
-                    customerId = id;
+                    customerId = idElement.GetInt32();
                 }
             }
-
-
 
             // Validate if the car exists
             if (!_bookingService.CarExists(carId))
             {
                 ModelState.AddModelError("", "The selected car does not exist.");
-                return View();
+                var carDetails = _carRepository.Get(carId); // Fetch car details for re-rendering
+                return View("Index", carDetails);
             }
 
             // Validate if the customer exists
             if (!_bookingService.CustomerExists(customerId))
             {
                 ModelState.AddModelError("", "The customer does not exist.");
-                return View();
+                var carDetails = _carRepository.Get(carId); // Fetch car details for re-rendering
+                return View("Index", carDetails);
             }
 
             try
@@ -130,11 +103,12 @@ namespace CarRentals.Areas.CustomerArea.Controllers
             {
                 // Handle any errors (e.g., car already booked for the selected dates)
                 ModelState.AddModelError("", ex.Message);
-                return View(new BookingViewModel { CarId = carId });
+                var carDetails = _carRepository.Get(carId); // Fetch car details for re-rendering
+                return View("Index", carDetails); // Return to the booking form page with errors
             }
-
         }
 
-            
+
+
     }
 }

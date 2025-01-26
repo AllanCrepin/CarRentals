@@ -5,7 +5,12 @@
 }
 
 
+
+
 <div class="container pt-5 col-lg-10 col-10">
+    <div class="validation-summary">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    </div>
     <div class="row">
         <div class="col-12">
             <h1>Välj datum</h1>
@@ -49,16 +54,16 @@
                                     <!-- Left Column -->
                                     <div class="col-lg-6 col-12">
                                         <ul class="list-unstyled">
-                                            <li class="d-flex align-items-center gap-2 mb-3">
+                                            <li class="d-flex align-items-center gap-2 mb-3 mt-2">
                                                 <img src="/images/person-svgrepo-com.svg" alt="Seats" class="icon">
-                                                <strong>Seats:</strong> @Model.NumberSeats
+                                                <strong>Säten:</strong> @Model.NumberSeats
                                             </li>
                                             @{
-                                                string transmissionType = Model.IsAutomatic ? "Automat" : "Manual";
+                                                string transmissionType = Model.IsAutomatic ? "Automat" : "Manuell";
                                             }
                                             <li class="d-flex align-items-center gap-2 mb-3">
                                                 <img src="/images/transmission-square-svgrepo-com.svg" alt="Transmission" class="icon">
-                                                <strong>Transmission:</strong> @transmissionType
+                                                <strong>Växling:</strong> @transmissionType
                                             </li>
                                             <li class="d-flex align-items-center gap-2 mb-2">
                                                 <img src="/images/calendar-days-svgrepo-com.svg" alt="Calendar" class="icon">
@@ -69,7 +74,7 @@
                                     <!-- Right Column -->
                                     <div class="col-lg-6 col-12">
                                         <ul class="list-unstyled">
-                                            <li class="d-flex align-items-center gap-2 mb-3">
+                                            <li class="d-flex align-items-center gap-2 mb-3 mt-2">
                                                 <img src="/images/green-car-svgrepo-com.svg" alt="Environment" class="icon">
                                                 <strong>Miljöbetyg:</strong> @Model.EnvironmentalRating
                                             </li>
@@ -93,14 +98,6 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <!-- Buttons Section -->
-                                    <div class="col-12">
-                                        <div class="d-flex flex-lg-row flex-column align-items-center justify-content-end">
-                                            <button class="btn btn-success w-100 mb-lg-0 mb-3 mr-lg-3 mr-0">Contact Seller</button>
-                                            <button class="btn btn-default w-100 mb-lg-0 mb-3 mr-lg-3 mr-0">Park</button>
-                                            <button class="btn btn-default w-100">Comments(18)</button>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -116,57 +113,10 @@
                 <label for="booking-dates" class="form-label">Select Booking Dates</label>
                 <input id="booking-dates" name="BookingDates" type="text" class="form-control" placeholder="Select booking dates">
             </div>
-            <button type="submit" class="btn btn-primary">Boka nu</button>
+            <button type="submit" class="btn btn-primary border-0">Boka nu</button>
         </form>
     </div>
 </div>
-
-
-
-
-
-
-
-<!---
-<div class="container">
-    <div id="carouselExample" class="carousel slide">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="@Model.ImageUrls[0]" class="img-fluid ratioimg" alt="...">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-</div>
-
--->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

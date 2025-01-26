@@ -31,6 +31,7 @@ namespace CarRentals.Data.Service
                            .Include(b => b.Customer)  // Eager load Customer
                            .Include(b => b.Car)       // Eager load Car
                            .Where(b => b.CustomerId == customerId)  // Filter by CustomerId
+                           .OrderBy(b => b.StartDate)
                            .ToList();  // Execute the query and return a list
         }
     }
