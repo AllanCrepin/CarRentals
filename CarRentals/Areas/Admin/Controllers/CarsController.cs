@@ -10,10 +10,12 @@ namespace CarRentals.Areas.Admin.Controllers
     {
 
         private readonly ICarRepository _carRepository;
+        private readonly IBookingRepository _bookingRepository;
 
-        public CarsController(ICarRepository carRepository)
+        public CarsController(ICarRepository carRepository, IBookingRepository bookingRepository)
         {
             this._carRepository = carRepository;
+            this._bookingRepository = bookingRepository;
         }
 
 
@@ -114,20 +116,45 @@ namespace CarRentals.Areas.Admin.Controllers
             return View(_carRepository.Get(id));
         }
 
-        // POST: CarsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             try
             {
-                _carRepository.Delete(id);
-                return RedirectToAction(nameof(Index));
+                // Check if the car has active bookings
+                var activeBookings = _bookingRepository.GetAll() // Replace with your actual booking repository method
+                    .Where(b => b.CarId == id && !b.IsCancelled)
+                    .Any();
+
+                if (activeBookings)
+                {
+                    // Mark the car as unavailable
+                    var car = _carRepository.Get(id); // Replace with your actual method to get a car by id
+                    if (car != null)
+                    {
+                        car.IsAvailable = false;
+                        _carRepository.Update(car); // Update the car availability
+                        ModelState.AddModelError("", "The car has active bookings and has been marked as unavailable.");
+                        //return RedirectToAction(nameof(Delete), new { id });
+                        return View("Delete", car);
+                    }
+                }
+                else
+                {
+                    // Delete the car if there are no active bookings
+                    _carRepository.Delete(id);
+                    return RedirectToAction(nameof(List)); // Redirect to Index only on successful deletion
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                // Log the error if needed
+                ModelState.AddModelError("", "An error occurred while processing your request. Please try again.");
             }
+
+            // If any issues occur, redirect back to the Delete page with errors
+            return RedirectToAction(nameof(Delete), new { id });
         }
     }
 }

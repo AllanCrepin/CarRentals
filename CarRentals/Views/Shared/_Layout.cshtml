@@ -24,9 +24,8 @@
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a class="nav-link px-2 text-white" asp-area="" asp-controller="Cars" asp-action="Index">Alla bilar</a></li>
-                    <li><a class="nav-link px-2 text-white" asp-area="" asp-controller="Home" asp-action="Index">Bokning</a></li>
-                    <li><a class="nav-link px-2 text-white" asp-area="" asp-controller="Home" asp-action="Index">Om oss</a></li>
-                    <li><a class="nav-link px-2 text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                    <li><a class="nav-link px-2 text-white" asp-area="" asp-controller="Home" asp-action="OmOss">Om oss</a></li>
+                    <li><a class="nav-link px-2 text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Integritetspolicy</a></li>
                 </ul>
 
                 @await Component.InvokeAsync("UserMenu")
@@ -51,6 +50,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="~/lib/flatpickr/flatpickr.js"></script>
+    <script src="~/lib/flatpickr/sv.js"></script>
 
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

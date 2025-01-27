@@ -50,12 +50,22 @@ namespace CarRentals.ViewComponents
                     var name = nameElement.GetString();
                     var status = statusElement.GetString();
 
+                    if (status == "AdminLoggedIn")
+                    {
+                        ViewBag.Type = "Admin";
+                    }
+                    if (status == "CustomerLoggedIn")
+                    {
+                        ViewBag.Type = "Customer";
+                    }
+
                     if (status == "AdminLoggedIn" || status == "CustomerLoggedIn")
                     {
                         ViewBag.Name = name;
                         ViewBag.Status = status;
                         return View();
                     }
+                    
                 }
             }
 

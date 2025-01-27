@@ -21,7 +21,7 @@ namespace CarRentals.Areas.Admin.Controllers
         // GET: BookingsController
         public ActionResult Index()
         {
-            return View(_bookingRepository.GetAll());
+            return View(_bookingRepository.GetAll().OrderBy(b => b.StartDate));
         }
 
         // GET: BookingsController/Details/5
@@ -129,10 +129,11 @@ namespace CarRentals.Areas.Admin.Controllers
         // POST: BookingsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult DeleteConfirmed(int id)
         {
             try
             {
+                _bookingRepository.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch

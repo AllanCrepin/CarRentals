@@ -34,10 +34,10 @@ namespace CarRentals.Areas.CustomerArea.Controllers
             return View(car); // Display the car details where the user can confirm the booking
         }
 
-        public ActionResult Success()
+        public ActionResult Success(Booking booking)
         {
 
-            return View();
+            return View(booking);
         }
 
         [HttpGet]
@@ -95,9 +95,8 @@ namespace CarRentals.Areas.CustomerArea.Controllers
             {
                 // Create the booking using the provided parameters
                 var booking = _bookingService.CreateBooking(bookingDates, customerId, carId);
-                _bookingRepository.Add(booking);
                 // Redirect to a success page or show the booking details
-                return RedirectToAction("Success");
+                return RedirectToAction("Success", booking);
             }
             catch (Exception ex)
             {

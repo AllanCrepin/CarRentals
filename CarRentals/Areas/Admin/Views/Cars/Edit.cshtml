@@ -1,4 +1,5 @@
 ﻿@model CarRentals.Data.Models.Car
+@using System.Globalization
 
 @{
     ViewData["Title"] = "Edit";
@@ -25,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="PricePerDay" class="control-label"></label>
-                <input asp-for="PricePerDay" class="form-control" />
+                <input asp-for="PricePerDay" class="form-control" value="@Model.PricePerDay.ToString("0", CultureInfo.InvariantCulture)" />
                 <span asp-validation-for="PricePerDay" class="text-danger"></span>
             </div>
             <div class="form-group">

@@ -10,9 +10,9 @@ namespace CarRentals.Data.Service
         {
         }
 
-        public override IEnumerable<Car> Find(Expression<Func<Car, bool>> predicate)
+        public IEnumerable<Car> GetAllAvailable()
         {
-            return base.Find(predicate);
+            return _dbContext.Cars.Where(c => c.IsAvailable == true).ToList();
         }
     }
 }

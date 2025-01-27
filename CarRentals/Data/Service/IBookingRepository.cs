@@ -6,6 +6,8 @@ namespace CarRentals.Data.Service
     {
         IEnumerable<Booking> GetBookingsByCarIdAndDateRange(int carId, DateTime startDate, DateTime endDate);
 
+        IEnumerable<Booking> GetBookingsByDateRange(DateTime startDate, DateTime endDate);
+
         IEnumerable<Booking> EagerGetAll();
 
         IEnumerable<Booking> GetAllByCustomerId(int customerId);

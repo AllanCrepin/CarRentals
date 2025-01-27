@@ -8,11 +8,23 @@ namespace CarRentals.Data.Service
         public BookingRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
         }
+
+        public override IEnumerable<Booking> GetAll()
+        {
+            return _dbContext.Set<Booking>().OrderBy(b=>b.StartDate).ToList();
+        }
         public IEnumerable<Booking> GetBookingsByCarIdAndDateRange(int carId, DateTime startDate, DateTime endDate)
         {
             return _dbContext.Bookings
                 .Where(b => b.CarId == carId &&
                             ((b.StartDate < endDate && b.EndDate > startDate))) // Check for overlapping dates
+                .ToList();
+        }
+
+        public IEnumerable<Booking> GetBookingsByDateRange(DateTime startDate, DateTime endDate)
+        {
+            return _dbContext.Bookings
+                .Where(booking => booking.StartDate < endDate && booking.EndDate > startDate)
                 .ToList();
         }
 

@@ -5,7 +5,16 @@
             <img src="~/images/profile-image.jpg" alt="~profile-picture" width="32" height="32" class="rounded-circle">
         </a>
         <ul class="dropdown-menu text-small">
-            <li><a class="dropdown-item" asp-area="CustomerArea" asp-controller="Bookings" asp-action="Index">Mina bokningar</a></li>
+            @if (ViewBag.Type == "Customer")
+            {
+                <li><a class="dropdown-item" asp-area="CustomerArea" asp-controller="Bookings" asp-action="Index">Mina bokningar</a></li>
+            }
+
+            @if (ViewBag.Type == "Admin")
+            {
+                <li><a class="dropdown-item" asp-area="Admin" asp-controller="Home" asp-action="Index">Adminsida</a></li>
+                
+            }
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" asp-area="CustomerArea" asp-controller="Home" asp-action="Logout">Logga ut</a></li>
         </ul>

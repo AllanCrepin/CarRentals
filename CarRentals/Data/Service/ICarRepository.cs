@@ -4,5 +4,6 @@ namespace CarRentals.Data.Service
 {
     public interface ICarRepository : IRepository<Car>
     {
+        IEnumerable<Car> GetAllAvailable();
     }
 }

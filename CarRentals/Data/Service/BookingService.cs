@@ -57,20 +57,20 @@ namespace CarRentals.Data.Service
             var car = _carRepository.Get(model.CarId);
             if (car == null)
             {
-                throw new Exception("Car not found");
+                throw new Exception("Bilen hittades inte.");
             }
 
             // Check if customer exists
             var customer =_customerRepository.Get(model.CustomerId);
             if (customer == null)
             {
-                throw new Exception("Customer not found");
+                throw new Exception("Kunden kunde inte hittas.");
             }
 
             // Validate the booking dates
             if (!IsDateValid(model.StartDate, model.EndDate))
             {
-                throw new Exception("Invalid dates: Ensure the start date is before the end date and the duration is at least 2 hours.");
+                throw new Exception("Ogiltiga datum: Se till att startdatumet är före slutdatumet och att startdatumet inte redan har passerat.");
             }
 
             // Calculate the number of rental days
@@ -78,7 +78,7 @@ namespace CarRentals.Data.Service
 
             if (rentalDuration <= 0)
             {
-                throw new Exception("End date must be later than the start date.");
+                throw new Exception("Slutdatumet måste vara senare än startdatumet.");
             }
 
 
@@ -117,13 +117,30 @@ namespace CarRentals.Data.Service
             return !existingBookings.Any(); // If no overlapping bookings are found, the car is available
         }
 
+        public IEnumerable<Car> GetAvailableCars(DateTime startDate, DateTime endDate)
+        {
+            var allCars = _carRepository.GetAll();  // Get all cars from the repository
+            var conflictingBookings = _bookingRepository.GetBookingsByDateRange(startDate, endDate);  // Get all bookings in the given date range
+
+            var availableCars = allCars.Where(car => car.IsAvailable && // Check if the car is available
+                !conflictingBookings
+                .Any(booking => booking.CarId == car.Id &&
+                    ((booking.StartDate >= startDate && booking.StartDate <= endDate) ||  // Booking starts during the given range
+                     (booking.EndDate >= startDate && booking.EndDate <= endDate) ||  // Booking ends during the given range
+                     (booking.StartDate <= startDate && booking.EndDate >= endDate))) // Booking completely overlaps the given range
+            ).ToList();
+
+            return availableCars;
+        }
+
+
         public Booking CreateBooking(string bookingDates, int userId, int carId)
         {
             // Split the booking dates string into start and end dates
-            var dates = bookingDates.Split(" to ");
+            var dates = bookingDates.Split(" till ");
             if (dates.Length != 2)
             {
-                throw new Exception("Invalid booking dates format.");
+                throw new Exception("Ogiltigt format för bokningsdatum.");
             }
 
             var startDate = DateTime.Parse(dates[0]);
@@ -132,27 +149,27 @@ namespace CarRentals.Data.Service
             // Validate the booking dates
             if (!IsDateValid(startDate, endDate))
             {
-                throw new Exception("Invalid dates: Ensure the start date is before the end date and the duration is at least 2 hours.");
+                throw new Exception("Ogiltiga datum: Se till att startdatumet är före slutdatumet och att startdatumet inte redan har passerat.");
             }
 
             // Check if car exists
             var car = _carRepository.Get(carId);
             if (car == null)
             {
-                throw new Exception("Car not found");
+                throw new Exception("Bilen hittades inte.");
             }
 
             // Check if customer exists
             var customer = _customerRepository.Get(userId);
             if (customer == null)
             {
-                throw new Exception("Customer not found");
+                throw new Exception("Kunden kunde inte hittas.");
             }
 
             // Check if the car is available for the selected date range
             if (!IsCarAvailable(carId, startDate, endDate))
             {
-                throw new Exception("The car is already booked for the selected dates.");
+                throw new Exception("Bilen är redan bokad för de valda datumen.");
             }
 
             // Calculate the number of rental days
@@ -173,13 +190,9 @@ namespace CarRentals.Data.Service
                 IsCancelled = false // You can adjust this based on your logic
             };
 
-            // Add the booking to the context and save
-            /*
-            _context.Add(booking);
-            await _context.SaveChangesAsync();
-            */
 
-            return booking;
+            return _bookingRepository.Add(booking);
+
         }
 
 

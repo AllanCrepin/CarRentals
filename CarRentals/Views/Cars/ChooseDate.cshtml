@@ -1,0 +1,31 @@
+﻿
+<h1>Välj datum för att se tillgängliga bilar</h1>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<div class="container mt-5 col-6">
+    <form asp-action="ChooseDate">
+        <div class="mb-3">
+            <label for="booking-dates" class="form-label">Select Booking Dates</label>
+            <input id="booking-dates" name="BookingDates" type="text" class="form-control" placeholder="Select booking dates">
+        </div>
+        <button type="submit" class="btn btn-primary border-0">Visa tillgängliga bilar</button>
+    </form>
+</div>
+
+
+
+@section Scripts {
+    <script>
+
+
+        var flatpickr = flatpickr("#booking-dates", {
+                            mode: "range",
+                            dateFormat: "Y-m-d",
+                            minDate: "today",
+                            locale: "sv"
+                        });
+
+
+    </script>
+}

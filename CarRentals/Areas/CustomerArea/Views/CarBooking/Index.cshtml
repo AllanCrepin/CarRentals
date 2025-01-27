@@ -138,6 +138,8 @@
                             mode: "range",
                             dateFormat: "Y-m-d",
                             disable: disabledDates.map(date => new Date(date)),
+                            minDate: "today",
+                            locale: "sv",  // This sets the week to start on Monday
                         });
                     });
             });
