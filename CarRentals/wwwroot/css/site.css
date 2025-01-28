@@ -13,8 +13,7 @@ html {
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+
 }
 
 body {
@@ -36,6 +35,9 @@ hr {
 
     height: .5px !important;
 }
+
+
+
 
 
 .ratioimg {

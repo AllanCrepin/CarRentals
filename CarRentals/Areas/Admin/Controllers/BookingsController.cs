@@ -123,7 +123,7 @@ namespace CarRentals.Areas.Admin.Controllers
         // GET: BookingsController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(_bookingRepository.Get(id));
         }
 
         // POST: BookingsController/Delete/5
