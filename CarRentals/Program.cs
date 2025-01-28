@@ -14,6 +14,24 @@ namespace CarRentals
 
 
 
+    /*
+     
+    "Kestrel": {
+    "Endpoints": {
+      "Http": {
+        "Url": "http://0.0.0.0:5000"
+      },
+      "Https": {
+        "Url": "https://0.0.0.0:5001"
+      }
+    }
+  },
+
+    TO ACCESS SITE FROM OTHER DEVICES; CONNECT USING COMPUTERS IP ADRESS (IPCONFIG)
+
+    SOMETIMES 5000 OR 5001 WORKS
+     */
+
     public class Program
     {
         public static void Main(string[] args)
