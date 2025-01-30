@@ -11,44 +11,19 @@
     <hr />
     @Html.ValidationSummary(false, "", new { @class = "text-danger" })
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Customer)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CustomerId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Car)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CarId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TotalCost)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TotalCost)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsCancelled)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsCancelled)
-        </dd>
+        <dt class = "col-sm-2"> @Html.DisplayNameFor(model => model.Customer) </dt>
+        <dd class = "col-sm-10"> @Html.DisplayFor(model => model.CustomerId) </dd>
+        <dt class = "col-sm-2"> @Html.DisplayNameFor(model => model.Car) </dt>
+        <dd class = "col-sm-10"> @Html.DisplayFor(model => model.CarId) </dd>
+        <dt class = "col-sm-2"> @Html.DisplayNameFor(model => model.StartDate) </dt>
+        <dd class = "col-sm-10"> @Html.DisplayFor(model => model.StartDate) </dd>
+        <dt class = "col-sm-2"> @Html.DisplayNameFor(model => model.EndDate) </dt>
+        <dd class = "col-sm-10"> @Html.DisplayFor(model => model.EndDate) </dd>
+        <dt class = "col-sm-2"> @Html.DisplayNameFor(model => model.TotalCost) </dt>
+        <dd class = "col-sm-10"> @Html.DisplayFor(model => model.TotalCost) </dd>
+        <dt class = "col-sm-2"> @Html.DisplayNameFor(model => model.IsCancelled) </dt>
+        <dd class = "col-sm-10"> @Html.DisplayFor(model => model.IsCancelled) </dd>
     </dl>
-    
     <form asp-action="DeleteConfirmed">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="ta bort" class="btn btn-danger" /> |

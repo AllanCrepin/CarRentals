@@ -16,8 +16,7 @@ namespace CarRentals.Data.Service
         public IEnumerable<Booking> GetBookingsByCarIdAndDateRange(int carId, DateTime startDate, DateTime endDate)
         {
             return _dbContext.Bookings
-                .Where(b => b.CarId == carId &&
-                            ((b.StartDate < endDate && b.EndDate > startDate))) // Check for overlapping dates
+                .Where(b => b.CarId == carId && ((b.StartDate < endDate && b.EndDate > startDate)))
                 .ToList();
         }
 
@@ -31,20 +30,19 @@ namespace CarRentals.Data.Service
         public IEnumerable<Booking> EagerGetAll()
         {
             return _dbContext.Bookings
-                           .Include(b => b.Customer)  // Eager load Customer
-                           .Include(b => b.Car)      // Eager load Car
-                           .ToList();  // Immediately execute the query
+                           .Include(b => b.Customer)
+                           .Include(b => b.Car)
+                           .ToList();
         }
 
-        // Eager loading method with filtering by CustomerId
         public IEnumerable<Booking> GetAllByCustomerId(int customerId)
         {
             return _dbContext.Bookings
-                           .Include(b => b.Customer)  // Eager load Customer
-                           .Include(b => b.Car)       // Eager load Car
-                           .Where(b => b.CustomerId == customerId)  // Filter by CustomerId
+                           .Include(b => b.Customer)
+                           .Include(b => b.Car)
+                           .Where(b => b.CustomerId == customerId)
                            .OrderBy(b => b.StartDate)
-                           .ToList();  // Execute the query and return a list
+                           .ToList();
         }
     }
 }

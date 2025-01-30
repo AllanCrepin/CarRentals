@@ -17,21 +17,17 @@ namespace CarRentals.Areas.CustomerArea.Controllers
             _customerRepository = customerRepository;
             _passwordService = passwordService;
         }
-        // GET: HomeController
+
+
         public ActionResult Index()
         {
             if (Request.Cookies.TryGetValue("AuthCookie", out var cookieValue))
             {
                 var userData = JsonSerializer.Deserialize<JsonElement>(cookieValue);
 
-                // Access the properties using JsonElement.GetProperty
-                if (userData.TryGetProperty("Name", out var nameElement) &&
-                    userData.TryGetProperty("Status", out var statusElement))
+                if (userData.TryGetProperty("Status", out var statusElement))
                 {
-                    var name = nameElement.GetString();
-                    var status = statusElement.GetString();
-
-                    if (status == "CustomerLoggedIn")
+                    if (statusElement.GetString() == "CustomerLoggedIn")
                     {
                         return View("CustomerPage");
                     }
@@ -60,7 +56,6 @@ namespace CarRentals.Areas.CustomerArea.Controllers
                 var customer = _customerRepository.GetByEmail(loginViewModel.Email);
                 if (customer != null && _passwordService.VerifyPassword(loginViewModel.Password, customer.Password))
                 {
-                    // Create authentication cookie
                     var authCookieOptions = new CookieOptions
                     {
                         HttpOnly = true,
@@ -68,9 +63,6 @@ namespace CarRentals.Areas.CustomerArea.Controllers
                         Expires = DateTime.UtcNow.AddHours(3)
                     };
                     
-
-                    // Not at ALL secure, but more security has been specifically forbidden.
-
                     var userData = new { Name = customer.Name, Status = "CustomerLoggedIn", Id=customer.Id };
                     var userDataJson = JsonSerializer.Serialize(userData);
 
@@ -82,10 +74,7 @@ namespace CarRentals.Areas.CustomerArea.Controllers
                         if (carIdCookie != null)
                         {
                             int carId = int.Parse(carIdCookie);
-
-                            // Remove the cookie after retrieving its value
                             Response.Cookies.Delete("CarOnHold");
-
                             return RedirectToAction("Index", "CarBooking", new { area = "CustomerArea", carId = carId });
                         }
 
@@ -94,14 +83,13 @@ namespace CarRentals.Areas.CustomerArea.Controllers
                     return RedirectToAction(nameof(Index));
                     
                 }
-                ModelState.AddModelError(string.Empty, "Invalid email or password.");
+                ModelState.AddModelError(string.Empty, "Ogilitig mejladress eller lösenord.");
             }
 
-            // Return to Index with validation errors
             var viewModel = new LoginAndRegistrationViewModel
             {
                 LoginViewModel = loginViewModel,
-                RegistrationViewModel = new CustomerRegistrationViewModel() // Keep the registration form intact
+                RegistrationViewModel = new CustomerRegistrationViewModel()
             };
             return View("Index", viewModel);
         }
@@ -119,14 +107,8 @@ namespace CarRentals.Areas.CustomerArea.Controllers
         [CustomerOnly]
         public IActionResult Logout()
         {
-            Response.Cookies.Delete("AuthCookie"); // Remove the authentication cookie
+            Response.Cookies.Delete("AuthCookie");
             return RedirectToAction("Index", "Home");
-        }
-
-        // GET: HomeController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
         }
 
         [HttpPost]
@@ -142,10 +124,9 @@ namespace CarRentals.Areas.CustomerArea.Controllers
                     Password = registrationViewModel.Password
                 };
 
-                // If a customer with this email address is already registered
                 if (_customerRepository.GetByEmail(newCustomer.Email) != null)
                 {
-                    ModelState.AddModelError(string.Empty, "This email is already registered");
+                    ModelState.AddModelError(string.Empty, "Det finns redan ett konto med den här mejladressen.");
                 }
                 else
                 {
@@ -157,8 +138,6 @@ namespace CarRentals.Areas.CustomerArea.Controllers
                         Secure = true,
                         Expires = DateTime.UtcNow.AddHours(3)
                     };
-
-                    // Not at ALL secure, but more security has been specifically forbidden.
 
                     var userData = new { Name = newCustomer.Name, Status = "CustomerLoggedIn", Id = finalCustomer.Id };
                     var userDataJson = JsonSerializer.Serialize(userData);
@@ -172,7 +151,6 @@ namespace CarRentals.Areas.CustomerArea.Controllers
                         {
                             int carId = int.Parse(carIdCookie);
 
-                            // Remove the cookie after retrieving its value
                             Response.Cookies.Delete("CarOnHold");
 
                             return RedirectToAction("Index", "CarBooking", new { area = "CustomerArea", carId = carId });
@@ -185,10 +163,9 @@ namespace CarRentals.Areas.CustomerArea.Controllers
 
             }
 
-            // Return to Index with validation errors
             var viewModel = new LoginAndRegistrationViewModel
             {
-                LoginViewModel = new CustomerLoginViewModel(), // Keep the login form intact
+                LoginViewModel = new CustomerLoginViewModel(),
                 RegistrationViewModel = registrationViewModel
             };
             return View("Index", viewModel);

@@ -12,13 +12,6 @@ html {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-html {
-
-}
-
-body {
-}
-
 .bg-primary {
     background-color: #ffc107 !important;
 }
@@ -41,16 +34,16 @@ hr {
 
 
 .ratioimg {
-    height: 60%; /* 40% of the viewport width */
-    /*height: 310px;*/
+    height: 60%;
     object-fit: cover;
     object-position: center;
 }
+
 .carousel {
     height: 250px;
     width:100%;
-    object-fit: cover; /* Ensures the image fills the space proportionally */
-    object-position: center; /* Centers the image content */
+    object-fit: cover;
+    object-position: center;
 }
 
 .carousel img{
@@ -60,6 +53,8 @@ hr {
     object-position:center;
 }
 
+
+
 .lead {
     font-size: 1.25rem;
     font-weight: 400;
@@ -67,62 +62,41 @@ hr {
 
 
 
-/* Adjust layout for smaller screens */
+
 @media (max-width: 768px) {
     .footer-content {
-        flex-direction: column; /* Stack items vertically */
-        text-align: center; /* Center text */
+        flex-direction: column;
+        text-align: center;
     }
 
     .footer-left, .footer-logo {
-        margin-bottom: 10px; /* Add spacing between elements */
+        margin-bottom: 10px;
     }
 
     .footer-right {
-        display: none; /* Hide the "Tillbaka till toppen" link */
+        display: none;
     }
 
     .footer-left {
-        order: 2; /* Ensure copyright text stays below */
+        order: 2;
     }
 
     .footer-logo {
-        order: 1; /* Ensure logo appears above */
+        order: 1;
     }
 }
 
-/*
-.carousel-inner {
-    min-height: 310px;
-    object-fit: cover;
-}
-*/
-
-
-/*
-.carousel{
-    width:310px;
-    height:310px;
-}
-.carousel-item {
-    width:310px;
-    height:310px;    
-}
-*/
-/*
-.carousel-item img {
-    width:310px;
-    height:310px;
-}
-*/
 
 .icon {
     width:30px;
     height:30px;
 }
 
+
+
+
 .flatpickr-calendar {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Matches Bootstrap font */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     border: 1px solid #ddd;
     border-radius: 0.25rem;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
@@ -132,19 +106,19 @@ hr {
     border-radius: 0.25rem;
 }
 
-    .flatpickr-day:hover {
-        background-color: #e9ecef; /* Matches Bootstrap hover color */
-    }
+.flatpickr-day:hover {
+    background-color: #e9ecef;
+}
 
-    .flatpickr-day.selected {
-        background-color: #007bff; /* Matches Bootstrap primary color */
-        color: #fff;
-    }
+.flatpickr-day.selected {
+    background-color: #007bff;
+    color: #fff;
+}
 
-    .flatpickr-day.today {
-        border: 1px solid #007bff;
-    }
+.flatpickr-day.today {
+    border: 1px solid #007bff;
+}
 
 .flatpickr-calendar {
-    z-index: 1050; /* Matches Bootstrap's modal z-index */
+    z-index: 1050;
 }

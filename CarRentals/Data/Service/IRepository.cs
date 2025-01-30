@@ -16,23 +16,3 @@ namespace CarRentals.Data.Service
         void SaveChanges();
     }
 }
-
-
-
-/*
- 
- MARCUS:
-
-public interface IGenericRepository<T> where T : class
-    {
-        Task<List<T>> GetAllAsync();
-        Task<T> GetByIdAsync(int id);
-        Task UpdateAsync(T entity);
-        Task<T> AddAsync(T entity);
-        Task DeleteAsync(int id);
-        Task<bool> ExistsAsync(int id);
-    }
- 
- 
- 
- */

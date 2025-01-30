@@ -16,7 +16,7 @@ namespace CarRentals.Data.Models
 
         [StringLength(20, MinimumLength = 4, ErrorMessage = "Lösenordet måste vara mellan 4 och 20 tecken.")]
         [Required(ErrorMessage = "Lösenord krävs.")]
-        public string Password { get; set; } // Cleartext for practice purposes
+        public string Password { get; set; }
         public List<Booking> Bookings { get; set; } = new List<Booking>();
     }
 }

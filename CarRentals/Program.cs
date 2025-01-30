@@ -4,46 +4,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarRentals
 {
-
-
-
-    // Will probably have to make changes in the models. For example, using Virtual etc or idk what, maybe there will be
-    // kopplingstabeller needed and whatnot!
-
-    // VOIRE MARCUS REPOSITORY DEMO FILE
-
-
-
-    /*
-     
-    "Kestrel": {
-    "Endpoints": {
-      "Http": {
-        "Url": "http://0.0.0.0:5000"
-      },
-      "Https": {
-        "Url": "https://0.0.0.0:5001"
-      }
-    }
-  },
-
-    TO ACCESS SITE FROM OTHER DEVICES; CONNECT USING COMPUTERS IP ADRESS (IPCONFIG)
-
-    SOMETIMES 5000 OR 5001 WORKS
-     */
-
     public class Program
     {
         public static void Main(string[] args)
         {
-
-
             var builder = WebApplication.CreateBuilder(args);
 
             var connectionString = builder.Configuration.GetConnectionString("DevConnection") ??
             throw new InvalidOperationException("Connection string 'DevConnection' was not found.");
 
-            // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
             builder.Services.AddTransient<PasswordService>();
@@ -54,14 +23,11 @@ namespace CarRentals
             builder.Services.AddTransient<BookingService>();
             builder.Services.AddTransient<CarService>();
 
-
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -70,14 +36,8 @@ namespace CarRentals
 
             app.UseRouting();
 
-            app.UseAuthentication(); // NECESSARY FOR COOKIES?
+            app.UseAuthentication();
             app.UseAuthorization();
-
-            /*
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
-            */
 
             app.MapControllerRoute(
                 name: "areas",
@@ -86,9 +46,6 @@ namespace CarRentals
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
-
-
 
             app.Run();
         }

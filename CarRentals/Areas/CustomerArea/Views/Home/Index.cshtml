@@ -5,12 +5,10 @@
     ViewData["Title"] = "Index";
 }
 
-
 <div class="container my-5 pt-5">
 
     <div class="row grid gap-3 justify-content-center">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <!-- Log In Column -->
         <div class="col-lg-5 bg-light py-5">
             <h4>LOGGA IN</h4>
             <hr />
@@ -18,21 +16,22 @@
                 @Html.AntiForgeryToken()
                 <div class="form-group mb-3">
                     <label asp-for="LoginViewModel.Email" class="control-label"></label>
-                    <input asp-for="LoginViewModel.Email" class="form-control" />
+                    <input type="email" asp-for="LoginViewModel.Email" class="form-control" />
                     <span asp-validation-for="LoginViewModel.Email" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
                     <label asp-for="LoginViewModel.Password" class="control-label"></label>
-                    <input asp-for="LoginViewModel.Password" class="form-control" />
+                    <input type="password" asp-for="LoginViewModel.Password" class="form-control" />
                     <span asp-validation-for="LoginViewModel.Password" class="text-danger"></span>
                 </div>
                 <input type="submit" value="Log in" class="btn btn-primary border-0" />
             </form>
         </div>
 
-        <!-- Register as Customer Column -->
+
+
         <div class="col-lg-5 bg-light py-5">
-            <h4>REGISTRERA SIG</h4>
+            <h4>REGISTRERA DIG</h4>
             <hr />
             <form asp-action="Register" method="post">
                 @Html.AntiForgeryToken()
@@ -43,16 +42,17 @@
                 </div>
                 <div class="form-group mb-3">
                     <label asp-for="RegistrationViewModel.Email" class="control-label"></label>
-                    <input asp-for="RegistrationViewModel.Email" class="form-control" />
+                    <input type="email" asp-for="RegistrationViewModel.Email" class="form-control" />
                     <span asp-validation-for="RegistrationViewModel.Email" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
                     <label asp-for="RegistrationViewModel.Password" class="control-label"></label>
-                    <input asp-for="RegistrationViewModel.Password" class="form-control" />
+                    <input type="password" asp-for="RegistrationViewModel.Password" class="form-control" />
                     <span asp-validation-for="RegistrationViewModel.Password" class="text-danger"></span>
                 </div>
                 <input type="submit" value="Register" class="btn btn-primary border-0" />
             </form>
         </div>
+
     </div>
 </div>

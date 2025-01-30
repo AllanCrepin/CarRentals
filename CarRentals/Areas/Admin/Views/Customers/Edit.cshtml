@@ -1,7 +1,7 @@
 ﻿@model CarRentals.Data.Models.Customer
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Ändra kunduppgifter";
 }
 
 <h1 class="mx-auto mt-5">Ändra</h1>
@@ -10,7 +10,7 @@
             <div class="col-md-6">
                 <h4>Kund</h4>
                 <hr />
-            <form asp-action="Edit">
+                <form asp-action="Edit">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Id" />
                 <div class="form-group mb-3">
@@ -28,12 +28,6 @@
                     <input asp-for="Password" class="form-control" />
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
-                @*
-                @for (int i = 0; i < Model.Bookings.Count; i++)
-                {
-                    <input asp-for="Bookings" name="Bookings[@i]" value="@Model.Bookings[i].Id" class="form-control" placeholder="a" />
-                }
-                *@
                 <div class="form-group">
                     <input type="submit" value="Spara" class="btn btn-primary" />
                 </div>
@@ -44,9 +38,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 @section Scripts {
     @{

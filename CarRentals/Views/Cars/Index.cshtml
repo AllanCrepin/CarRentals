@@ -11,14 +11,12 @@
 
 
 <div class="container">
-    @foreach (var chunk in Model.Chunk(3)) // Split the list into chunks of 3
+    @foreach (var chunk in Model.Chunk(3))
     {
         <div class="row mt-3">
-            <!-- A new row for every chunk -->
             @foreach (var car in chunk)
             {
                 <div class="col-md-4 mb-4">
-                    <!-- Each card takes 4 columns in a 12-column grid -->
                     <div class="card h-100">
                         <img src="@car.ImageUrls[0]" class="card-img-top border-bottom img-fluid ratioimg">
 

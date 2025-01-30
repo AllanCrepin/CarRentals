@@ -30,7 +30,6 @@ namespace CarRentals.Areas.Admin.Controllers
             {
                 var userData = JsonSerializer.Deserialize<JsonElement>(cookieValue);
 
-                // Access the properties using JsonElement.GetProperty
                 if (userData.TryGetProperty("Name", out var nameElement) &&
                     userData.TryGetProperty("Status", out var statusElement))
                 {
@@ -43,17 +42,6 @@ namespace CarRentals.Areas.Admin.Controllers
                     }
                 }
             }
-            /*
-            if (Request.Cookies.ContainsKey("AuthCookie"))
-            {
-                // The cookie exists, you can retrieve its value
-                if (cookieValue.name == "AdminLoggedIn")
-                {
-                    return View("AdminPage");
-                }
-            }
-            return View();
-            */
 
             return View();
         }
@@ -63,8 +51,6 @@ namespace CarRentals.Areas.Admin.Controllers
         {
             return View();
         }
-
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -76,22 +62,19 @@ namespace CarRentals.Areas.Admin.Controllers
 
                 if (admin != null && dbAdmin != null && _passwordService.VerifyPassword(admin.Password, dbAdmin.Password))
                 {
-                    // Create a cookie for authentication
                     var authCookieOptions = new CookieOptions
                     {
-                        HttpOnly = true,       // Prevent client-side access
-                        Secure = true,         // Ensure cookie is sent over HTTPS (set to false if in development)
-                        Expires = DateTime.UtcNow.AddHours(3) // Set expiration time
+                        HttpOnly = true,
+                        Secure = true,
+                        Expires = DateTime.UtcNow.AddHours(3)
                     };
-
-                    // Not at ALL secure, but more security has been specifically forbidden.
 
                     var userData = new { Name = dbAdmin.Email, Status = "AdminLoggedIn"};
                     var userDataJson = JsonSerializer.Serialize(userData);
 
                     Response.Cookies.Append("AuthCookie", userDataJson, authCookieOptions);
 
-                    return RedirectToAction(nameof(Index)); // Redirect to admin dashboard
+                    return RedirectToAction(nameof(Index));
                 }
             }
 
@@ -104,7 +87,7 @@ namespace CarRentals.Areas.Admin.Controllers
         [AdminOnly]
         public IActionResult Logout()
         {
-            Response.Cookies.Delete("AuthCookie"); // Remove the authentication cookie
+            Response.Cookies.Delete("AuthCookie");
             return RedirectToAction("Index", "Home");
         }
     }

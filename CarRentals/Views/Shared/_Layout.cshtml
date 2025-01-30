@@ -22,12 +22,10 @@
                     FRIBERG CAR <span class="text-primary">RENTALS</span>
                 </a>
 
-                <!-- Toggler button for small screens -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <!-- Collapsible content -->
                 <div class="collapse navbar-collapse" id="navbarContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
@@ -41,7 +39,6 @@
                         </li>
                     </ul>
 
-                    <!-- User menu (remains aligned to the right) -->
                     <div class="d-flex">
                         @await Component.InvokeAsync("UserMenu")
                     </div>
@@ -52,58 +49,25 @@
 
 
 
-
     <main role="main" class="pb-3 d-flex flex-column min-vh-100">
             @RenderBody()
         </main>
 
-        <!--
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - CarRentals - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    -->
-    <!--
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top border-top footer bg-dark text-white mb-0">
-            <div class="col-md-4 d-flex">
-                <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2025 Friberg Car Rentals AB</span>
-            </div>
-
-            <div class="col-md-4 d-flex">
-                <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-                    <img src="~/images/carrentals-logo-transparent.png" class="d-block mx-auto img-fluid" alt="Bootstrap Themes" width="100" height="100" loading="lazy">
-                </a>
-            </div>
-
-            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter" /></svg></a></li>
-                <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram" /></svg></a></li>
-                <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook" /></svg></a></li>
-            </ul>
-        </footer>
-        -->
-
     <footer class="bg-dark text-light py-3">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center flex-wrap footer-content">
-                <!-- Left: Copyright -->
                 <div class="text-start footer-left">
                     <p class="mb-0">© Friberg Car Rentals AB</p>
                 </div>
-                <!-- Middle: Logo -->
                 <div class="text-center footer-logo">
                     <img src="~/images/carrentals-logo-transparent.png" alt="Logo" height="120">
                 </div>
-                <!-- Right: All Rights Reserved -->
                 <div class="text-end footer-right">
                     <a class="mb-0 text-decoration-none text-light" href="#top">Tillbaka till toppen</a>
                 </div>
             </div>
         </div>
     </footer>
-
-
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

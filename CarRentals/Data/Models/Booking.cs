@@ -14,6 +14,6 @@ namespace CarRentals.Data.Models
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalCost { get; set; }
-        public bool IsCancelled { get; set; } // For future bookings that are deleted
+        public bool IsCancelled { get; set; }
     }
 }

@@ -1,5 +1,5 @@
+using CarRentals.Data.Models;
 using CarRentals.Data.Service;
-using CarRentals.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;

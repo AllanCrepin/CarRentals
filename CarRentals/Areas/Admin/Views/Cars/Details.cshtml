@@ -1,7 +1,7 @@
 ﻿@model CarRentals.Data.Models.Car
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detaljer";
 }
 
 <h1 class="mx-auto mt-5">Detaljer</h1>
@@ -10,62 +10,26 @@
     <h4>Bil</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Model)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Model)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Year)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Year)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PricePerDay)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PricePerDay)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.EnvironmentalRating)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.EnvironmentalRating)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.NumberSeats)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NumberSeats)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageUrls)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ImageUrls)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.IsAvailable)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.IsAvailable)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.IsElectric)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.IsElectric)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.IsAutomatic)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.IsAutomatic)
-        </dd>
-
+        <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.Model) </dt>
+        <dd class="col-sm-10"> @Html.DisplayFor(model => model.Model) </dd>
+        <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.Year) </dt>
+        <dd class="col-sm-10"> @Html.DisplayFor(model => model.Year) </dd>
+        <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.PricePerDay) </dt>
+        <dd class="col-sm-10"> @Html.DisplayFor(model => model.PricePerDay) </dd>
+        <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.EnvironmentalRating) </dt>
+        <dd class="col-sm-10"> @Html.DisplayFor(model => model.EnvironmentalRating) </dd>
+        <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.NumberSeats) </dt>
+        <dd class="col-sm-10"> @Html.DisplayFor(model => model.NumberSeats) </dd>
+        <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.ImageUrls) </dt>
+        <dd class="col-sm-10"> @Html.DisplayFor(model => model.ImageUrls) </dd>
+        <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.IsAvailable) </dt>
+        <dd class="col-sm-10"> @Html.DisplayFor(model => model.IsAvailable) </dd>
+        <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.IsElectric) </dt>
+        <dd class="col-sm-10"> @Html.DisplayFor(model => model.IsElectric) </dd>
+        <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.IsAutomatic) </dt>
+        <dd class="col-sm-10"> @Html.DisplayFor(model => model.IsAutomatic) </dd>
     </dl>
+
     <div class="mt-5">
         <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
         <a asp-action="Index">Tillbaka till listan</a>

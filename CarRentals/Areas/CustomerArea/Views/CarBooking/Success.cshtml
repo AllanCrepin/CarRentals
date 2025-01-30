@@ -1,4 +1,8 @@
 ﻿@model CarRentals.Data.Models.Booking
 
-<p>Du har bokat bilen från @Model.StartDate.ToString("yyyy-MM-dd") till @Model.EndDate.ToString("yyyy-MM-dd") för @Model.TotalCost:-</p>
-<p>Du kan se över eller ta bort bokningar på sidan <a asp-area="CustomerArea" asp-controller="Bookings" asp-action="Index">Mina bokningar</a></p>
+<h1 class="mx-auto my-5">Tack för din bokning!</h1>
+
+<div class="container text-center">
+    <p>Du har nu bokat en bil från @Model.StartDate.ToString("yyyy-MM-dd") till @Model.EndDate.ToString("yyyy-MM-dd") för @Model.TotalCost:-</p>
+    <p>Du kan se över eller ta bort bokningar på sidan <a asp-area="CustomerArea" asp-controller="Bookings" asp-action="Index">Mina bokningar</a></p>
+</div>

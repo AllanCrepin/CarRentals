@@ -16,29 +16,26 @@ namespace CarRentals.Data.Service
 
         public List<Car> GetMostBookedCars(int count)
         {
-            // Filter only available cars and calculate booking count
             var topBookedCars = _carRepository.GetAll()
-                .Where(car => car.IsAvailable) // Only include available cars
+                .Where(car => car.IsAvailable)
                 .Select(car => new
                 {
                     Car = car,
                     BookingCount = _bookingRepository.GetAll()
-                        .Count(b => b.CarId == car.Id && !b.IsCancelled) // Count bookings for this car
+                        .Count(b => b.CarId == car.Id && !b.IsCancelled)
                 })
-                .OrderByDescending(c => c.BookingCount) // Order by booking count descending
-                .Take(count) // Take the top 'count' cars
+                .OrderByDescending(c => c.BookingCount)
+                .Take(count)
                 .Select(c => c.Car)
                 .ToList();
 
-            // Fallback logic if less than 'count' available cars are found
             if (topBookedCars.Count < count)
             {
                 var fallbackCars = _carRepository.GetAll()
-                    .Where(car => car.IsAvailable) // Only include available cars for fallback
+                    .Where(car => car.IsAvailable)
                     .Take(count)
                     .ToList();
 
-                // Merge the two lists, ensuring no duplicates
                 topBookedCars = topBookedCars
                     .Concat(fallbackCars)
                     .Distinct()

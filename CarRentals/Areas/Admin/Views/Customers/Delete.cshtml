@@ -1,12 +1,10 @@
 ﻿@model CarRentals.Data.Models.Customer
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Ta bort en kund";
 }
 
 <h1 class="mx-auto mt-5">Ta bort</h1>
-
-
 
 <div class="container mt-5">
     <h3>Är du säker på att du vill ta bort den här kunden?</h3>
@@ -35,6 +33,6 @@
     <form asp-action="DeleteConfirmed">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Index">Tillbaka till listan</a>
     </form>
 </div>

@@ -16,7 +16,7 @@ namespace CarRentals.Data.Models
         [Column(TypeName = "decimal(18,2)")]
         [Required(ErrorMessage = "Pris per dag krävs.")]
         public decimal PricePerDay { get; set; }
-        public List<string> ImageUrls { get; set; } // Store links to images
+        public List<string> ImageUrls { get; set; }
 
         [Required]
         public bool IsAvailable { get; set; }

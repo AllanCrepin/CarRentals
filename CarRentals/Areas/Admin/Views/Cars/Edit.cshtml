@@ -43,10 +43,10 @@
                 <div class="form-group mb-3">
                     <label asp-for="ImageUrls" class="control-label"></label>
                     <div class="row g-3">
-                        @for (int i = 0; i < 5; i++) // Change 5 to whatever max inputs you'd like
+                        @for (int i = 0; i < 5; i++)
                         {
                             <div class="col-12">
-                                <input asp-for="ImageUrls" name="ImageUrls[@i]" value="@(i < Model.ImageUrls.Count ? Model.ImageUrls[i] : string.Empty)" class="form-control" placeholder="Enter image URL (optional)" />
+                                <input asp-for="ImageUrls" name="ImageUrls[@i]" value="@(i < Model.ImageUrls.Count ? Model.ImageUrls[i] : string.Empty)" class="form-control" placeholder="Skriv i URL eller lämna tomt." />
                             </div>
                         }
                     </div>
