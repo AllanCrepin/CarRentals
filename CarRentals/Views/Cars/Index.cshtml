@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="d-flex flex-column">
                                     @{
-                                        string transmissionType = car.IsAutomatic ? "Automat" : "Manual";
+                                        string transmissionType = car.IsAutomatic ? "Automat" : "Manuell";
                                     }
                                     <small class="text-muted mb-2">@transmissionType</small>
                                     <div class="d-flex flex-row">
@@ -55,7 +55,7 @@
                                     }
                                     else
                                     {
-                                        <small class="text-muted mb-2">Petrol</small>
+                                        <small class="text-muted mb-2">Bensin</small>
                                         <div class="d-flex flex-row">
                                             <img src="~/images/gas-station-petrol-station-svgrepo-com.svg" width="30" height="30">
                                         </div>
