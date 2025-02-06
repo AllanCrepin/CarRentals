@@ -78,7 +78,7 @@ namespace CarRentals.Areas.Admin.Controllers
                 }
             }
 
-            ViewBag.ErrorMessage = "Invalid username or password.";
+            ViewBag.ErrorMessage = "Fel mejladress eller lösenord.";
 
             return View("Index");
         }

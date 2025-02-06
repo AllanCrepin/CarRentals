@@ -55,7 +55,7 @@ namespace CarRentals.Areas.Admin.Controllers
             return View(car);
         }
 
-        // POST: CustomersController/Edit/5
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Customer customer)
@@ -73,7 +73,7 @@ namespace CarRentals.Areas.Admin.Controllers
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", "An error occurred while updating the customer. Please try again.");
+                ModelState.AddModelError("", "Ett fel uppstod under uppdatering av Customer. Försök igen.");
                 return View(customer);
             }
         }
