@@ -27,3 +27,12 @@ This project is a car rental web application built as part of an assignment for 
 
 🔹 Bootstrap & jQuery – Frontend styling and interactivity
 
+<br/>
+
+### Screenshots
+
+![Screenshot](https://github.com/AllanCrepin/CarRentals/blob/master/Screenshot%202025-02-13%20144122.png)
+![Screenshot](https://github.com/AllanCrepin/CarRentals/blob/master/Screenshot%202025-02-13%20142923.png)
+![Screenshot](https://github.com/AllanCrepin/CarRentals/blob/master/Screenshot%202025-02-13%20144232.png)
+
+
